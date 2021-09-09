@@ -43,27 +43,27 @@ hadoop相关
 
 7. 通过jps确认服务是否正常
   hadoop1:
-  2163 NodeManager
-  885 NameNode
-  1365 JournalNode
-  2534 Jps
-  1609 DFSZKFailoverController
-  269 QuorumPeerMain
-  1054 DataNode
+    2163 NodeManager
+    885 NameNode
+    1365 JournalNode
+    2534 Jps
+    1609 DFSZKFailoverController
+    269 QuorumPeerMain
+    1054 DataNode
   hadoop2:
-  995 ResourceManager
-  659 JournalNode
-  1363 Jps
-  409 NameNode
-  1114 NodeManager
-  251 QuorumPeerMain
-  796 DFSZKFailoverController
-  524 DataNode
+    995 ResourceManager
+    659 JournalNode
+    1363 Jps
+    409 NameNode
+    1114 NodeManager
+    251 QuorumPeerMain
+    796 DFSZKFailoverController
+    524 DataNode
   hadoop3:
-  528 JournalNode
-  819 NodeManager
-  676 ResourceManager
-  1188 Jps
-  269 QuorumPeerMain
-  397 DataNode
+    528 JournalNode
+    819 NodeManager
+    676 ResourceManager
+    1188 Jps
+    269 QuorumPeerMain
+    397 DataNode
 ```
