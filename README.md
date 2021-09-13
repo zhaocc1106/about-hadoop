@@ -73,7 +73,7 @@
 ```
 1.下载与hadoop兼容的版本：wget https://www.apache.org/dyn/closer.lua/spark/spark-3.1.2/spark-3.1.2-bin-hadoop3.2.tgz
 
-2.解压到hadoop1容器/root/env环境
+2.解压到hadoop1容器/root/env目录并进入spark目录
 
 3.添加spark环境变量到.bashrc
   export SPARK_HOME=/root/env/spark-3.1.2-bin-hadoop3.2
