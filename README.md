@@ -1,5 +1,5 @@
-# about-hadoop
-hadoop相关
+# big-data
+大数据相关
 
 ## [构建高可用hadoop集群(hadoop-ha)](https://www.cnblogs.com/ling-yu-amen/articles/11460590.html)
 使用三个docker实例模拟三台机器，主机名分别为hadoop1.com、hadoop2.com、hadoop3.com。<br>
@@ -66,4 +66,42 @@ hadoop相关
     1188 Jps
     269 QuorumPeerMain
     397 DataNode
+```
+
+## 基于hadoop集群构建spark集群
+### 构建步骤
+```
+1.下载与hadoop兼容的版本：wget https://www.apache.org/dyn/closer.lua/spark/spark-3.1.2/spark-3.1.2-bin-hadoop3.2.tgz
+
+2.解压到hadoop1容器/root/env环境
+
+3.添加spark环境变量到.bashrc
+  export SPARK_HOME=/root/env/spark-3.1.2-bin-hadoop3.2
+  export PATH=$SPARK_HOME/bin:$PATH
+
+4.添加spark-env的环境变量
+  cp conf/spark-env.sh.template conf/spark-env.sh
+    export JAVA_HOME=/root/env/jdk1.8.0_301
+    export JRE_HOME=$JAVA_HOME/jre
+    export SPARK_MASTER_IP=172.17.0.2
+    export SPARK_WORKER_MEMORY=8g
+    export SPARK_WORKER_CORES=4
+    export SPARK_EXECUTOR_MEMORY=4g
+    export HADOOP_HOME=/root/env/hadoop-3.3.1
+    export HADOOP_CONF_DIR=/root/env/hadoop-3.3.1/etc/hadoop
+    export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:$JRE_HOME/lib/native/:$JRE_HOME/lib/amd64/server/:$LD_LIBRARY_PATH
+
+5.设置workers域名
+  cp conf/workers.template conf/workers
+    hadoop1.com
+    hadoop2.com
+    hadoop3.com
+
+6.修改spark集群管理web port
+  vim sbin/start-master.sh
+    SPARK_MASTER_WEBUI_PORT=8081
+
+7.启动spark集群
+  ./sbin/start-all.sh
+  访问hadoop1.com:8081集群管理web确认spark集群启动成功
 ```
