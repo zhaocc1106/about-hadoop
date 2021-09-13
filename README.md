@@ -103,5 +103,5 @@
 
 7.启动spark集群
   ./sbin/start-all.sh
-  访问hadoop1.com:8081集群管理web确认spark集群启动成功
+  访问hadoop1.com:8081集群管理web确认spark集群启动成功，通过spark-shell访问hdfs中的文件确认和hadoop关联成功。
 ```
