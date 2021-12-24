@@ -15,9 +15,9 @@
   docker pull zhaocc1106/hadoop:ha
 
 2.开启三个docker实例模拟三台机器
-  docker run -itd --name hadoop zhaocc1106/hadoop:device1 bash
-  docker run -itd --name hadoop zhaocc1106/hadoop:device2 bash
-  docker run -itd --name hadoop zhaocc1106/hadoop:device3 bash
+  docker run -itd --name hadoop1 zhaocc1106/hadoop:ha bash
+  docker run -itd --name hadoop2 zhaocc1106/hadoop:ha bash
+  docker run -itd --name hadoop3 zhaocc1106/hadoop:ha bash
 
 3.更改每个实例的/etc/hosts，以及修改主机的/etc/hosts方便web访问
   添加每台实例新指定的域名：
