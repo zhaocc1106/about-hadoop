@@ -33,6 +33,9 @@
   service ssh start
 
 5.开启zookeeper集群，每个实例执行
+  rm -rf /opt/data/zookeeper/data/
+  mkdir -p /opt/data/zookeeper/data/zData/
+  echo 1 > /opt/data/zookeeper/data/zData/myid // hadoop1.com, haoop2.com, hadoop3.com实例分别写1, 2, 3到myid中
   cd /root/env
   ./apache-zookeeper-3.5.9-bin/bin/zkServer.sh start
 
