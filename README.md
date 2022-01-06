@@ -39,12 +39,26 @@
   cd /root/env
   ./apache-zookeeper-3.5.9-bin/bin/zkServer.sh start
 
-6. 开启hadoop-ha
+6. 格式化
+  每个实例执行如下命令启动journalnode:
+  hdfs --daemon start journalnode
+  
+  hadoop1.com中执行如下命令格式化namenode并启动：
+  hdfs namenode -format
+  hdfs --daemon start namenode
+  
+  hadoop2.com中执行如下命令初始化namenode为standby并启动：
+  hdfs namenode -bootstrapStandby
+  
+  hadoop1.com中执行如下命令格式化hadoop在zookeeper中的node：
+  hdfs zkfc -formatZK
+  
+7. 开启hadoop-ha其它服务
   进入任意实例hadoop环境执行：
   /root/env/hadoop-3.3.1
   ./sbin/start-all.sh
 
-7. 通过jps确认服务是否正常
+8. 通过jps确认服务是否正常
   hadoop1:
     2163 NodeManager
     885 NameNode
