@@ -50,7 +50,7 @@
   hadoop2.com中执行如下命令初始化namenode为standby并启动：
   hdfs namenode -bootstrapStandby
   
-  hadoop1.com中执行如下命令格式化hadoop在zookeeper中的node：
+  hadoop1.com中执行如下命令格式化zookeeper，即创建hadoop在zookeeper中的znode：
   hdfs zkfc -formatZK
   
 7. 开启hadoop-ha其它服务
