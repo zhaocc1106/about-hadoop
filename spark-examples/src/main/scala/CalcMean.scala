@@ -9,7 +9,7 @@ object CalcMean {
     val input_file = args(0)
     val output_dir = args(1)
     // 创建spark context
-    val conf = new SparkConf().setAppName("calcMean").setMaster("spark://zhaocc-Lenovo-Legion-R7000P2021H:7077") // 根据实际设置spark集群的master
+    val conf = new SparkConf().setAppName("calcMean") // 根据实际设置spark集群的master
     val sc = new SparkContext(conf)
 
     // 读取文件
@@ -31,6 +31,6 @@ object CalcMean {
     result.collectAsMap().map(println(_))
 
     // 统计出来的单词总数保存到文本文件
-    // result.saveAsTextFile(output_dir)
+    result.saveAsTextFile(output_dir)
   }
 }

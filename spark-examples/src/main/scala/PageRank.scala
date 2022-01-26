@@ -8,7 +8,7 @@ object PageRank {
     val input_file = args(0)
     val output_dir = args(1)
     // 创建spark context
-    val conf = new SparkConf().setAppName("pageRank").setMaster("spark://zhaocc-Lenovo-Legion-R7000P2021H:7077") // 根据实际设置spark集群的master
+    val conf = new SparkConf().setAppName("pageRank") // 根据实际设置spark集群的master
     val sc = new SparkContext(conf)
 
     var links = sc.textFile(input_file)
