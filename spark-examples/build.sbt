@@ -8,3 +8,5 @@ idePackagePrefix := Some("org.spark_examples")
 
 libraryDependencies += "org.apache.spark" %% "spark-core" % "3.1.2"
 libraryDependencies += "org.apache.spark" %% "spark-streaming" % "3.1.2"
+libraryDependencies += "org.apache.spark" %% "spark-streaming-kafka-0-10" % "3.1.2"
+libraryDependencies += "org.apache.kafka" % "kafka-clients" % "3.1.0"
