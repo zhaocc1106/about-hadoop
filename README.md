@@ -1,4 +1,4 @@
-![image](https://github.com/zhaocc1106/big-data/assets/26559935/80262390-5765-4885-b1f8-9a43a2c1843e)# big-data
+# big-data
 大数据相关
 
 ## [构建高可用hadoop集群(hadoop-ha)](https://www.cnblogs.com/ling-yu-amen/articles/11460590.html)
