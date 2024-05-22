@@ -1,7 +1,15 @@
-# big-data
+![image](https://github.com/zhaocc1106/big-data/assets/26559935/80262390-5765-4885-b1f8-9a43a2c1843e)# big-data
 大数据相关
 
 ## [构建高可用hadoop集群(hadoop-ha)](https://www.cnblogs.com/ling-yu-amen/articles/11460590.html)
+![image](https://github.com/zhaocc1106/big-data/assets/26559935/958d74ec-7ddc-4e66-b0f0-1158e4e41fde)
+* HDFS HA 架构中有两台 NameNode 节点，一台是处于活动状态（Active）为客户端提供服务，另外一台处于热备份状态（Standby）。元数据文件有两个文件：fsimage 和 edits，备份元数据就是备份这两个文件。
+* JournalNode 用来实时从 Active NameNode 上拷贝 edits 文件，JournalNode 有三台也是为了实现高可用。Standby NameNode 不对外提供元数据的访问，它从 Active NameNode 上拷贝 fsimage 文件，从 JournalNode 上拷贝 edits 文件，然后负责合并 fsimage 和 edits 文件，相当于 SecondaryNameNode 的作用。最终目的是保证 Standby NameNode 上的元数据信息和 Active NameNode 上的元数据信息一致，以实现热备份。
+* Zookeeper 来保证在 Active NameNode 失效时及时将 Standby NameNode 修改为 Active 状态。
+* ZKFC（失效检测控制）是 Hadoop 里的一个 Zookeeper 客户端，在每一个 NameNode 节点上都启动一个 ZKFC 进程，来监控 NameNode 的状态，并把 NameNode 的状态信息汇报给 Zookeeper 集群，其实就是在 Zookeeper 上创建了一个 Znode 节点，节点里保存了 NameNode 状态信息。当 NameNode 失效后，ZKFC 检测到报告给 Zookeeper，Zookeeper把对应的 Znode 删除掉，Standby ZKFC 发现没有 Active 状态的 NameNode 时，就会用 shell 命令将自己监控的 NameNode 改为 Active 状态，并修改 Znode 上的数据。
+* Znode 是个临时的节点，临时节点特征是客户端的连接断了后就会把 znode 删除，所以当 ZKFC 失效时，也会导致切换 NameNode。
+* DataNode 会将心跳信息和 Block 汇报信息同时发给两台 NameNode， DataNode 只接受 Active NameNode 发来的文件读写操作指令。
+
 使用三个docker实例模拟三台机器，主机名分别为hadoop1.com、hadoop2.com、hadoop3.com。<br>
 * hadoop1.com部署的服务包括：<br>
 “NameNode”、“DataNode”、“NodeManager”、“JournalNode”、“DFSZKFailoverController”、“Zookeeper”。<br>
